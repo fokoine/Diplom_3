@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.By;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class TestPreloadData {
-    WebDriver driver;
+    public WebDriver driver;
 
     // Готовый пользователь
     public String emailExist = "primer@primer.ru";
@@ -18,12 +19,12 @@ public class TestPreloadData {
 
     @Before
     public void StartUp() {
-        ChromeOptions options = new ChromeOptions();
+        ChromeOptions options = new ChromeOptions(); // Драйвер для браузера
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         driver.get("https://stellarburgers.nomoreparties.site/");
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//h1[text() ='Соберите бургер']")));
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href ='/account']")));
     }
 
     @After

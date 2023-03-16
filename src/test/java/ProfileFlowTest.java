@@ -2,11 +2,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class ProfileFlowTest extends TestPreloadData{
 
@@ -20,11 +17,11 @@ public class ProfileFlowTest extends TestPreloadData{
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
         mainPage.profileButtonClick();
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href = '/account/profile']")));
         ProfilePage profilePage = new ProfilePage(driver);
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.visibilityOfElementLocated(profilePage.profileLink));
         String actual = profilePage.getTextLink();
-        Assert.assertEquals(actual, "Профиль");
+        Assert.assertEquals("Профиль", actual);
     }
 
     @Test
@@ -37,12 +34,11 @@ public class ProfileFlowTest extends TestPreloadData{
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
         mainPage.profileButtonClick();
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href = '/account/profile']")));
         ProfilePage profilePage = new ProfilePage(driver);
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.visibilityOfElementLocated(profilePage.profileLink));
         profilePage.logoClick();
-        String actual = mainPage.burgerMailTitle();
-        Assert.assertEquals(actual, "Соберите бургер");
+        Assert.assertEquals("Оформить заказ", mainPage.getOrderCreateButtonAfterLogin());
     }
 
     @Test
@@ -55,12 +51,12 @@ public class ProfileFlowTest extends TestPreloadData{
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
         mainPage.profileButtonClick();
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href = '/account/profile']")));
         ProfilePage profilePage = new ProfilePage(driver);
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.visibilityOfElementLocated(profilePage.profileLink));
         profilePage.constructorClick();
         String actual = mainPage.burgerMailTitle();
-        Assert.assertEquals(actual, "Соберите бургер");
+        Assert.assertEquals("Соберите бургер", actual);
     }
 
     @Test
@@ -73,13 +69,12 @@ public class ProfileFlowTest extends TestPreloadData{
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
         mainPage.profileButtonClick();
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href = '/account/profile']")));
         ProfilePage profilePage = new ProfilePage(driver);
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.visibilityOfElementLocated(profilePage.profileLink));
         profilePage.logoutLinkClick();
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text() = 'Войти']")));
-        String actual = loginPage.getLoginButtonText();
-        Assert.assertEquals(actual, "Войти");
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.visibilityOfElementLocated(loginPage.enterButton));
+        Assert.assertEquals("Войти", loginPage.getLoginButtonText());
     }
 }

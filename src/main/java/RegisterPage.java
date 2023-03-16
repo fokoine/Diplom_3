@@ -8,13 +8,13 @@ public class RegisterPage {
     }
 
     // Позиция поля ввода имени
-    private By namePlace = By.xpath("//input[@name='name']");
+    private By namePlace = By.xpath("//div[@class='Auth_login__3hAey']/form/fieldset[1]/div/div/input");
 
     // Позиция ввода email
-    private By emailPlace = By.xpath("//div[@id='root']/div/main/div/form/fieldset[2]/div/div/input");
+    private By emailPlace = By.xpath("//div[@class='Auth_login__3hAey']/form/fieldset[2]/div/div/input");
 
     // Позиция ввода пароля
-    private By passPlace = By.xpath("//input[@name='Пароль']");
+    private By passPlace = By.xpath("//div[@class='Auth_login__3hAey']/form/fieldset[3]/div/div/input");
 
     // Позиция кнопки регистрации
     private By regButton = By.xpath("//button[text() = 'Зарегистрироваться']");

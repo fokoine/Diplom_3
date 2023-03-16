@@ -17,13 +17,13 @@ public class LoginPage {
     // Позиция ссылки на восстановление пароля
     private By forgotLink = By.xpath("//a[@href = '/forgot-password']");
     // Кнопка входа
-    private By enterButton = By.cssSelector("button.button_button__33qZ0.button_button_type_primary__1O7Bx.button_button_size_medium__3zxIa");
+    By enterButton = By.xpath("//form[@class='Auth_form__3qKeq mb-20']/button");
     //Поле для ввода логина
     private By enterLoginField = By.xpath("//input[@name='name']");
     // Поле для ввода пароля
      private By enterPasswordField = By.xpath("//input[@name='Пароль']");
     // Заголовок для  проверки логина
-    public By loginTitle = By.xpath("//h2[text() = 'Вход']");
+    By loginTitle = By.xpath("//h2[text() = 'Вход']");
 
     // Нажатие ссылки "Зарегистрироваться" перехода к форме регистрации
     public void regLinkClick(){
@@ -44,7 +44,7 @@ public class LoginPage {
     // Наэатие кнопки "Войти"
     public void enterButtonClick(){
         driver.findElement(enterButton).click();
-        new WebDriverWait(driver, Duration.ofSeconds(3))
+        new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//h1[text() ='Соберите бургер']")));
     }
 

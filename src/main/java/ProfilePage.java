@@ -10,9 +10,9 @@ public class ProfilePage {
     }
 
     // Позиция ссылки "Профиль"
-    private By profileLink = By.xpath("//a[@href = '/account/profile']");
+    By profileLink = By.xpath("//a[@href = '/account/profile']");
     // Позиция ссылки в лого
-    private By logoLink = By.xpath("//a[@href = '/']");
+    private By logoLink = By.className("AppHeader_header__logo__2D0X2");
     // Позиция ссылки "Выход"
     private By logoutLink = By.xpath("//button[text() = 'Выход']");
     // Позиция ссылки "Конструктор"

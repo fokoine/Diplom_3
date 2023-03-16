@@ -2,6 +2,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 public class RegistrationPageCreateUserTest extends TestPreloadData{
 
     @Test
@@ -16,8 +19,9 @@ public class RegistrationPageCreateUserTest extends TestPreloadData{
         UserRandomDataGenerator userData = new UserRandomDataGenerator();
         registerPage.regDataInput(userData.randomUsername, userData.randomEmail + "@email.ru", userData.randomPassword);
         registerPage.regButtonClick();
-        LoginPage loginPage1 = new LoginPage(driver);
-        Assert.assertNotNull(loginPage1.loginTitle.toString(), true);
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.visibilityOfElementLocated(loginPage.loginTitle));
+        Assert.assertEquals("Войти", loginPage.getLoginButtonText());
     }
 
     @Test
@@ -32,7 +36,7 @@ public class RegistrationPageCreateUserTest extends TestPreloadData{
         UserRandomDataGenerator userData = new UserRandomDataGenerator();
         registerPage.regDataInput(userData.randomUsername, userData.randomEmail + "@email.ru", userData.incorrectRandomPassword);
         registerPage.regButtonClick();
-        Assert.assertNotNull(registerPage.stopPassText(), true);
+        Assert.assertEquals("Некорректный пароль", registerPage.stopPassText());
     }
 
 }

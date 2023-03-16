@@ -12,7 +12,7 @@ public class LoginTest extends TestPreloadData{
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
-        Assert.assertTrue(mainPage.burgerMailTitle(), true);
+        Assert.assertEquals("Оформить заказ", mainPage.getOrderCreateButtonAfterLogin());
     }
 
     @Test
@@ -23,7 +23,7 @@ public class LoginTest extends TestPreloadData{
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
-        Assert.assertTrue(mainPage.burgerMailTitle(), true);
+        Assert.assertEquals("Оформить заказ", mainPage.getOrderCreateButtonAfterLogin());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class LoginTest extends TestPreloadData{
         registerPage.loginPageLinkClick();
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
-        Assert.assertTrue(mainPage.burgerMailTitle(), true);
+        Assert.assertEquals("Оформить заказ", mainPage.getOrderCreateButtonAfterLogin());
     }
 
     @Test
@@ -51,6 +51,6 @@ public class LoginTest extends TestPreloadData{
         forgotPassPage.loginLinkClick();
         loginPage.loginFieldsFill(emailExist, passExist);
         loginPage.enterButtonClick();
-        Assert.assertTrue(mainPage.burgerMailTitle(), true);
+        Assert.assertEquals("Оформить заказ", mainPage.getOrderCreateButtonAfterLogin());
     }
 }

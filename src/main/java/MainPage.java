@@ -13,23 +13,28 @@ public class MainPage {
     // Позиция кнопки "Войти в аккаунт"
     private By loginButton = By.xpath("//button[text() = 'Войти в аккаунт']");
     // Позиция кнопки "Оформить заказ" - видно только после авторизации
-    private By orderCreateButton = By.xpath("//button[text() = 'Оформить заказ']");
-    // Позиция заголовка "Соберите бургер"
-    private By burgerMadeTitle = By.xpath("//h1[text() ='Соберите бургер']");
+    By orderCreateButton = By.xpath("//button[text() = 'Оформить заказ']");
+    // Позиция заголовка "Соберите бургер" для простой валидации того что открыта главная страница
+    By burgerMadeTitle = By.xpath("//h1[text() ='Соберите бургер']");
 
 
     // Позиция Вкладки "Соусы"
     private By saucePosition = By.xpath("//span[text() ='Соусы']");
+    // Активная вкладка "Соусы"
+    By activeSaucePosition
+            = By.xpath("//section[@class ='BurgerIngredients_ingredients__1N8v2']/div/div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text() ='Соусы']");
     // Позиция Вкладки "Начинки"
     private By nachinkaPosition = By.xpath("//span[text() ='Начинки']");
+    // Активная вкладка "Начинки"
+    By activeNachinkaPosition
+            = By.xpath("//section[@class ='BurgerIngredients_ingredients__1N8v2']/div/div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text() ='Начинки']");
     // Позиция Вкладки "Булки"
     private By bulkiPosition = By.xpath("//span[text() ='Булки']");
-    // Позиция соуса на экране после переключения вкладок
-    public By sauseOneOf = By.xpath("//p[text() = 'Соус с шипами Антарианского плоскоходца']");
-    // Позиция начинок на экране после переключения вкладок
-    public By nachinkaOneOf = By.xpath("//p[text() = 'Мясо бессмертных моллюсков Protostomia']");
-    // Позиция начинок на экране после переключения вкладок
-    public By bulkaOneOf = By.xpath("//p[text() = 'Флюоресцентная булка R2-D3']");
+    // Активная вкладка "Булки"
+    By activeBulkiPosition
+            = By.xpath("//section[@class ='BurgerIngredients_ingredients__1N8v2']/div/div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text() ='Булки']");
+
+
     // Нажатие вкладки "Соусы"
     public void sauceClickTicket(){
         driver.findElement(saucePosition).click();
@@ -55,5 +60,8 @@ public class MainPage {
     // Для проверок заголовок с главной
     public String burgerMailTitle() {
         return driver.findElement(burgerMadeTitle).getText();
+    }
+    public String getOrderCreateButtonAfterLogin() {
+        return driver.findElement(orderCreateButton).getText();
     }
 }
